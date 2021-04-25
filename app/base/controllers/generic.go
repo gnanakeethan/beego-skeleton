@@ -54,7 +54,7 @@ func (genericController *GenericController) GenerateSession(u *models.User) {
 			genericController.Data["User"] = genericController.User
 			return
 		} else if genericController.Ctx.Request.RequestURI != "/auth/login" {
-			genericController.Redirect("/auth/login", 301)
+			genericController.Redirect("/auth/login", 302)
 			return
 		}
 	}
