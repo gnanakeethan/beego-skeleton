@@ -32,4 +32,5 @@ func InitBeego() {
 	}
 	beego.BConfig.EnableGzip = true
 	beego.BConfig.WebConfig.StaticExtensionsToGzip = []string{".css", ".js", ".html"}
+	orm.Debug = true
 }
