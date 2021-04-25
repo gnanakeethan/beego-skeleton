@@ -18,15 +18,14 @@ type AuthController struct {
 
 // Prepares the login interfaces
 func (authController *AuthController) Prepare() {
-	authController.Layout = "layout/auth.tpl"
+	authController.Layout = "layout/guest.tpl"
 	authController.LayoutSections = make(map[string]string)
-	authController.LayoutSections["HtmlHead"] = "layout/html_head.tpl"
-	authController.LayoutSections["Scripts"] = "layout/auth_scripts.tpl"
-	authController.LayoutSections["Styles"] = "layout/auth_styles.tpl"
+	authController.LayoutSections["HtmlHead"] = "layout/guest/html_head.tpl"
+	authController.LayoutSections["Scripts"] = "layout/guest/scripts.tpl"
+	authController.LayoutSections["Styles"] = "layout/guest/styles.tpl"
 	authController.Data["AppName"] = beego.AppConfig.DefaultString("appname", "Honey")
 	authController.Data["xsrfdata"] = template.HTML(authController.XSRFFormHTML())
 	authController.Data["xsrftoken"] = authController.XSRFToken()
-	// beego.SetViewsPath("app/auth/views")
 }
 
 func (authController *AuthController) Logout() {

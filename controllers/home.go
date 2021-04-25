@@ -4,13 +4,13 @@ import (
 	"backend/app/base/controllers"
 )
 
-
-type MainController struct {
-	controllers.ActionController
+type HomeController struct {
+	controllers.GenericController
 }
 
-func (c *MainController) Get() {
+func (c *HomeController) Get() {
 	c.Data["Website"] = "beego.me"
 	c.Data["Email"] = "astaxie@gmail.com"
+	c.GenerateSession(nil)
 	c.TplName = "index.tpl"
 }

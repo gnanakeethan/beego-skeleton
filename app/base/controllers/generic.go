@@ -13,35 +13,48 @@ type GenericController struct {
 	beego.Controller
 }
 
-func (actionController *GenericController) Prepare() {
-	actionController.Layout = "layout/guest.tpl"
-	actionController.LayoutSections = make(map[string]string)
-	actionController.LayoutSections["HtmlHead"] = "layout/html_head.tpl"
-	actionController.LayoutSections["Topbar"] = "layout/topbar.tpl"
-	actionController.LayoutSections["Scripts"] = "layout/scripts.tpl"
-	actionController.LayoutSections["Styles"] = "layout/styles.tpl"
-	actionController.LayoutSections["Sidebar"] = "layout/sidebar.tpl"
-	actionController.Data["AppName"] = beego.AppConfig.DefaultString("appname","Honey")
-	actionController.Data["xsrfdata"] = template.HTML(actionController.XSRFFormHTML())
-	actionController.Data["xsrftoken"] = actionController.XSRFToken()
+func (genericController *GenericController) Prepare() {
+	genericController.GuestLayout()
+	genericController.Data["AppName"] = beego.AppConfig.DefaultString("appname", "Honey")
+	genericController.Data["xsrfdata"] = template.HTML(genericController.XSRFFormHTML())
+	genericController.Data["xsrftoken"] = genericController.XSRFToken()
 }
 
+func (genericController *GenericController) GuestLayout() {
+	genericController.Layout = "layout/guest.tpl"
+	genericController.LayoutSections = make(map[string]string)
+	genericController.LayoutSections["HtmlHead"] = "layout/guest/html_head.tpl"
+	genericController.LayoutSections["Topbar"] = "layout/guest/topbar.tpl"
+	genericController.LayoutSections["Scripts"] = "layout/guest/scripts.tpl"
+	genericController.LayoutSections["Styles"] = "layout/guest/styles.tpl"
+	genericController.LayoutSections["Sidebar"] = "layout/guest/sidebar.tpl"
+}
 
-func (this *GenericController) GenerateSession(u *models.User) {
+func (genericController *GenericController) AdminLayout() {
+	genericController.Layout = "layout/admin.tpl"
+	genericController.LayoutSections = make(map[string]string)
+	genericController.LayoutSections["HtmlHead"] = "layout/admin/html_head.tpl"
+	genericController.LayoutSections["Topbar"] = "layout/admin/topbar.tpl"
+	genericController.LayoutSections["Scripts"] = "layout/admin/scripts.tpl"
+	genericController.LayoutSections["Styles"] = "layout/admin/styles.tpl"
+	genericController.LayoutSections["Sidebar"] = "layout/admin/sidebar.tpl"
+}
+
+func (genericController *GenericController) GenerateSession(u *models.User) {
 	if u != nil {
-		this.SetSession("user_id", u.Id)
-		this.User = u
-		this.Data["User"] = u
+		genericController.SetSession("user_id", u.Id)
+		genericController.User = u
+		genericController.Data["User"] = u
 		return
 	} else {
-		this.StartSession()
-		userInterface := this.GetSession("user_id")
+		genericController.StartSession()
+		userInterface := genericController.GetSession("user_id")
 		if uObj, ok := userInterface.(string); ok {
-			this.User, _ = models.GetUserById(uObj)
-			this.Data["User"] = this.User
+			genericController.User, _ = models.GetUserById(uObj)
+			genericController.Data["User"] = genericController.User
 			return
-		} else if this.Ctx.Request.RequestURI != "/auth/login" {
-			this.Redirect("/auth/login", 301)
+		} else if genericController.Ctx.Request.RequestURI != "/auth/login" {
+			genericController.Redirect("/auth/login", 301)
 			return
 		}
 	}
