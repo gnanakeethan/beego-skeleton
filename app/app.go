@@ -26,6 +26,8 @@ func InitBeego() {
 
 	_ = orm.RegisterDataBase("default", dbdriver, conn)
 	_ = passlib.UseDefaults(passlib.DefaultsLatest)
+
+	//template function for checking permission, can be cached
 	_ = beego.AddFuncMap("hasPermission", auth.HasPermission)
 	_ = beego.AddFuncMap("hasRole", auth.HasRole)
 
