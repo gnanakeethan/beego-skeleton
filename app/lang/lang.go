@@ -1,7 +1,6 @@
 package lang
 
 import (
-	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
@@ -53,16 +52,8 @@ func LoadLang() {
 				logs.Error(err)
 				continue
 			}
-
-			_, _ = dstFile.WriteString("\n["+file.Name()[0:len(file.Name())-4]+"]\n")
-			bytesWritten, err := io.Copy(dstFile, srcFile)
-			logs.Info(bytesWritten)
-			if err != nil {
-				logs.Error(err)
-				continue
-			}
-
-			fmt.Println(file.Name())
+			_, _ = dstFile.WriteString("\n[" + file.Name()[0:len(file.Name())-4] + "]\n")
+			_, _ = io.Copy(dstFile, srcFile)
 		}
 
 		if err := i18n.SetMessage(lang, root+".ini"); err != nil {
