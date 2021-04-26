@@ -3,7 +3,6 @@ package app
 import (
 	"backend/app/auth"
 	_ "backend/app/auth/router"
-	_ "backend/app/base/router"
 	"backend/app/lang"
 
 	"github.com/beego/beego/v2/client/orm"
