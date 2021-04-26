@@ -14,4 +14,5 @@ let mix = require('laravel-mix');
 mix
     .postCss('./assets/css/app.css', 'static/css', [
         require('tailwindcss'),
-    ]).copy('./assets/js/reload.js', 'static/js');
+    ]).copy('./assets/js/reload.js', 'static/js')
+    .copyDirectory('./assets/images/', 'static/images');

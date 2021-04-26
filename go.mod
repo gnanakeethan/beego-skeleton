@@ -5,8 +5,10 @@ go 1.15
 require github.com/beego/beego/v2 v2.0.1
 
 require (
+	github.com/Unknwon/goconfig v0.0.0-20200908083735-df7de6a44db8 // indirect
 	github.com/astaxie/beego v1.12.3
 	github.com/beego/bee/v2 v2.0.2 // indirect
+	github.com/beego/i18n v0.0.0-20161101132742-e9308947f407 // indirect
 	github.com/kr/pretty v0.2.1 // indirect
 	github.com/lib/pq v1.10.1 // indirect
 	github.com/otiai10/copy v1.5.1 // indirect

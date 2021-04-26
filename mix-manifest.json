@@ -1,4 +1,5 @@
 {
     "/static/css/app.css": "/static/css/app.css",
-    "/static/js/reload.js": "/static/js/reload.js"
+    "/static/js/reload.js": "/static/js/reload.js",
+    "/static/images/logo.png": "/static/images/logo.png"
 }

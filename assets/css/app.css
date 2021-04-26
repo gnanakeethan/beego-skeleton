@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.\? {
+    @apply border-2 border-red-400 border-dashed;
+    animation: wobble 0.5s ease-in-out alternate infinite;
+}
+@keyframes wobble {
+    0% {
+        box-shadow: inset 0px 0px rgb(236, 15, 170), inset -0px -0px rgb(236, 15, 170);
+    }
+    100% {
+        box-shadow: inset 2px 2px rgb(236, 15, 170), inset -2px -2px rgb(236, 15, 170);
+    }
+}

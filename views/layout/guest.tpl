@@ -11,6 +11,7 @@
     {{.Styles}}
 </head>
 <body>
+{{.Topbar}}
 {{.LayoutContent}}
 {{.Scripts}}
 </body>
