@@ -3,7 +3,7 @@
     <div class="flex flex-col items-center"
          style="min-width:300px;max-width:425px;width:80%;min-height: 100px;">
         <div class="font-black text-2xl my-8">{{.AppName}} | {{.Title}}</div>
-        <form action="/auth/login" method="post"
+        <form action="/auth/login?redirect_back={{.RedirectBack}}" method="post"
               class="flex flex-col w-full">
             {{ .xsrfdata }}
             {{if .Flash.errored}}

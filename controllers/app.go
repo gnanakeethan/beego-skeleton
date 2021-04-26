@@ -17,5 +17,5 @@ func (c *AppController) URLMapping() {
 // @router / [get]
 func (c *AppController) Get() {
 	c.Data["Title"] = "App"
-	c.TplName = "index.tpl"
+	c.TplName = "app/home.tpl"
 }

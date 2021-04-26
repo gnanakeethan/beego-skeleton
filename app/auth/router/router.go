@@ -12,7 +12,5 @@ func init() {
 		beego.NSRouter("/login", &controllers.AuthController{}, "Post:LoginPost"),
 		beego.NSRouter("/logout", &controllers.AuthController{}, "*:Logout"),
 	)
-	
 	beego.AddNamespace(authNamespace)
-
 }

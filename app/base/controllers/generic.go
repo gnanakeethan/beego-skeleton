@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"html/template"
+	"strings"
 
 	"backend/models"
 
@@ -53,8 +54,8 @@ func (genericController *GenericController) GenerateSession(u *models.User) {
 			genericController.User, _ = models.GetUserById(uObj)
 			genericController.Data["User"] = genericController.User
 			return
-		} else if genericController.Ctx.Request.RequestURI != "/auth/login" {
-			genericController.Redirect("/auth/login", 302)
+		} else if !strings.Contains(genericController.Ctx.Request.RequestURI, "/auth/login") {
+			genericController.Redirect("/auth/login?redirect_back="+genericController.Ctx.Request.RequestURI, 302)
 			return
 		}
 	}

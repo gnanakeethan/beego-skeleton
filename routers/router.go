@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	// beego.Router("/", &controllers.HomeController{})
+	beego.Router("/", &controllers.HomeController{})
 	appNamespace := beego.NewNamespace("/app",
 		beego.NSInclude(&controllers.AppController{}),
 	)

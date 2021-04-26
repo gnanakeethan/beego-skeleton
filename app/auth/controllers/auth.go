@@ -39,10 +39,12 @@ func (authController *AuthController) Login() {
 		authController.Redirect("/", 302)
 	}
 	authController.Data["Title"] = "Login"
+	authController.Data["RedirectBack"] = authController.GetString("redirect_back", beego.AppConfig.DefaultString("login_redirect", ""))
 	authController.TplName = "honeypot/auth/login.tpl"
 }
 
 func (authController *AuthController) LoginPost() {
+	redirect := authController.GetString("redirect_back", beego.AppConfig.DefaultString("login_redirect", ""))
 	authController.Data["Title"] = "Login"
 	authController.TplName = "honeypot/auth/login.tpl"
 	username := authController.GetString("username")
@@ -68,7 +70,7 @@ LOGIN_SUCCESS:
 	if pass {
 		authController.GenerateSession(&user)
 		if authController.User != nil {
-			authController.Redirect("/", 302)
+			authController.Redirect(redirect, 302)
 			return
 		}
 	}
