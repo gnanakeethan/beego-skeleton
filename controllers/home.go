@@ -13,9 +13,9 @@ func (c *HomeController) URLMapping() {
 }
 
 
-// Post ...
-// @Title Post
-// @Success 201 {int} string
+// Get
+// @Title Get home page
+// @Success 201 {int} html
 // @router / [get]
 func (c *HomeController) Get() {
 	c.Data["Title"] = "App"
